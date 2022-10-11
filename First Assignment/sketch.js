@@ -1,25 +1,22 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-let x = 0
-let y = 0
-let a = 100
-let b = 100
-let circleSize = 50;
+let x = 0;
+let y = 0;
+let a = 100;
+let b = 100;
+let circleSize = 10;
 let circleSpeed = 5;
 let dx = 3;
 let dy = 2;
 let squareSize = 50;
 let squareColor;
- 
+let ax = 3;
+let bx = 2;
+
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 500);
   squareColor = color(255, 0, 0);
 }
- 
+
 function draw() {
   background(220);
   handleKeys();
@@ -27,13 +24,15 @@ function draw() {
   drawSquare();
   moveSquare();
   bounceIfNeeded();
+  bounceIfneededcircle();
 }
+
 function drawCircle() {
   fill("rgb(0,50,255)");
   noStroke();
   circle(a , b, circleSize);
 }
- 
+
 function handleKeys() {
   if (keyIsDown(87)) { //w
     b -= circleSpeed;
@@ -64,22 +63,23 @@ function mouseWheel(event) {
     }
   }
 }
- 
+
 function mousePressed() {
   dx = random(-5, 5);
   dy = random(-5, 5);
 }
- 
+
 function drawSquare() {
   fill(squareColor);
   square(x, y, squareSize);
 }
- 
+
 function moveSquare() {
   x += dx;
   y += dy;
 }
- 
+
+
 function bounceIfNeeded() {
   //bounce off right wall
   if (x >= width - squareSize) {
@@ -92,31 +92,72 @@ function bounceIfNeeded() {
   else if (x <= 0) {
     dx *= -1;
     //don't get caught on wall
-    x = 1;
+    x = 1; 
     changeSquareColor();
   }
   //bounce off bottom wall
   if (y >= height - squareSize) {
     dy *= -1;
     //don't get caught on wall
-    y = height - squareSize - 1;
+    y = height - squareSize - 1; 
     changeSquareColor();
   }
   //bounce off top wall
   if (y <= 0) {
     dy *= -1;
     //don't get caught on wall
-    y = 1;
+    y = 1; 
     changeSquareColor();
   }
 }
- 
+
 function changeSquareColor() {
   let r = random(0, 255);
   let g = random(0, 255);
   let b = random(0, 255);
   squareColor = color(r, g, b);
-}
- 
- 
+ }
 
+function bounceIfneededcircle() {
+  if (a >= width - circleSize) {
+    ax *= -1;
+    //don't get caught on wall
+    a = width - circleSize - 1;
+  }
+  //bounce off left wall
+  else if (a <= 0 + circleSize) {
+    ax *= -1;
+    //don't get caught on wall
+    a = circleSize; 
+  }
+//bounce off bottom wall
+  if (b >= height - circleSize) {
+    bx *= -1;
+    //don't get caught on wall
+    b = height - circleSize - 1; 
+  }
+  //bounce off top wall
+  if (b <= 0 + circleSize) {
+    bx *= -1;
+    //don't get caught on wall
+    b = circleSize; 
+  }
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
