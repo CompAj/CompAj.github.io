@@ -10,14 +10,26 @@ let squareSize = 50;
 let squareColor;
 let ax = 3;
 let bx = 2;
+let state = "start";
+let treesImg;
 
+
+function preload() {
+  treesImg = loadImage("fall-trees.jpg");
+}
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(windowWidth, windowHeight);
   squareColor = color(255, 0, 0);
 }
 
 function draw() {
+  if (state === "start") {
+    startScreen();
+  }
+  if (state === "main") {
+    image(treesImg, 0, 0, width, height);
+  }
   background(220);
   handleKeys();
   drawCircle();
@@ -116,7 +128,7 @@ function changeSquareColor() {
   let g = random(0, 255);
   let b = random(0, 255);
   squareColor = color(r, g, b);
- }
+}
 
 function bounceIfneededcircle() {
   if (a >= width - circleSize) {
@@ -130,7 +142,7 @@ function bounceIfneededcircle() {
     //don't get caught on wall
     a = circleSize; 
   }
-//bounce off bottom wall
+  //bounce off bottom wall
   if (b >= height - circleSize) {
     bx *= -1;
     //don't get caught on wall
@@ -144,9 +156,23 @@ function bounceIfneededcircle() {
   }
 }
   
+function startScreen() {
+  if (mouseInsideRect(400, 700, 400, 550)) {
+    fill("gray");
+  }
+  else {
+    fill("black");
+  }
+  rect(400, 400, 300, 150);
+  fill("white");
+  textSize(50);
+  text("Begin!", 480, 490);
+}
   
-  
-  
+function mouseInsideRect(left, right, top, bottom) {
+  return mouseX >= left && mouseX <= right &&
+         mouseY >= top && mouseY <= bottom;
+}
   
   
   
