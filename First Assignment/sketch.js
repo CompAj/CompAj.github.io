@@ -14,11 +14,6 @@ let ax = 3;
 let bx = 2;
 
 
-
-function preload() {
-  treesImg = loadImage("fall-trees.jpg");
-}
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   squareColor = color(255, 0, 0);
@@ -29,14 +24,13 @@ function draw() {
     startScreen();
   }
   if (state === "main") {
-    image(treesImg, 0, 0, width, height);
     background(220);
-  handleKeys();
-  drawCircle();
-  drawSquare();
-  moveSquare();
-  bounceIfNeeded();
-  bounceIfneededcircle();
+    handleKeys();
+    drawCircle();
+    drawSquare();
+    moveSquare();
+    bounceIfNeeded();
+    bounceIfneededcircle();
 }
   
 }
@@ -164,7 +158,7 @@ function startScreen() {
   rect(400, 400, 300, 150);
   fill("white");
   textSize(50);
-  text("Begin!", 480, 490);
+  text("Start", 480, 490);
 }
   
 function mouseInsideRect(left, right, top, bottom) {
