@@ -1,3 +1,5 @@
+let state = "start";
+let treesImg;
 let x = 0;
 let y = 0;
 let a = 100;
@@ -10,8 +12,7 @@ let squareSize = 50;
 let squareColor;
 let ax = 3;
 let bx = 2;
-let state = "start";
-let treesImg;
+
 
 
 function preload() {
@@ -29,14 +30,15 @@ function draw() {
   }
   if (state === "main") {
     image(treesImg, 0, 0, width, height);
-  }
-  background(220);
+    background(220);
   handleKeys();
   drawCircle();
   drawSquare();
   moveSquare();
   bounceIfNeeded();
   bounceIfneededcircle();
+}
+  
 }
 
 function drawCircle() {
@@ -76,10 +78,6 @@ function mouseWheel(event) {
   }
 }
 
-function mousePressed() {
-  dx = random(-5, 5);
-  dy = random(-5, 5);
-}
 
 function drawSquare() {
   fill(squareColor);
@@ -173,7 +171,12 @@ function mouseInsideRect(left, right, top, bottom) {
   return mouseX >= left && mouseX <= right &&
          mouseY >= top && mouseY <= bottom;
 }
-  
+
+function mousePressed() {
+  if (state === "start" && mouseInsideRect(400, 700, 400, 550)) {
+    state = "main";
+  } 
+}
   
   
   
