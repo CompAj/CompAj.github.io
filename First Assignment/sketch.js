@@ -35,14 +35,14 @@ function draw() {
       endGame();
     }
     else{
-      background(220);
+    background(220);
     handleKeys();
     drawCircle();
     drawSquare();
     moveSquare();
     bounceIfNeeded();
     bounceIfneededcircle();
-    console.log(getDistance(x,y,a,b))
+    console.log( getDistance(x, y, a, b))
     }
     
 }
@@ -183,8 +183,11 @@ function mouseInsideRect(left, right, top, bottom) {
 function mousePressed() {
   if (state === "start" && mouseInsideRect(830, 1130, 545, 695)) {
     state = "main";
+  }
+  if (state === "end") {
+    state = "start"; 
+  }
   } 
-}
 //Collision 
 function getDistance(x1, y1, x2, y2) {
     xDistance = x2 - x1;
@@ -194,16 +197,18 @@ function getDistance(x1, y1, x2, y2) {
 
 //Game over message 
 function endGame(){
+  state = "end";
   if (mouseInsideRect(830, 1130, 545, 695)) {
-    fill("yellow");
+    fill("white");
   }
   else {
     fill("blue");
   }
   rect(  830, 545, 300, 150);
-  fill("white");
+  fill("black");
   textSize(50);
   text("Again?", 830 + 80, 545 + 90);
+
 }
   
   
