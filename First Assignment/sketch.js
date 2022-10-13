@@ -15,7 +15,7 @@ let bx = 2;
 let gameEnd;
 function preload() {
   gameImg = loadImage("game-img.jpg");
-  gameEnd = loadImage("gameOverimg.jpg")
+  gameEnd = loadImage("gameOverimg.jpg");
 }
 
 function setup() {
@@ -39,17 +39,17 @@ function draw() {
       endGame();
     }
     else{
-    background(220);
-    handleKeys();
-    drawCircle();
-    drawSquare();
-    moveSquare();
-    bounceIfNeeded();
-    bounceIfneededcircle();
-    console.log( getDistance(x, y, a, b))
+      background(220);
+      handleKeys();
+      drawCircle();
+      drawSquare();
+      moveSquare();
+      bounceIfNeeded();
+      bounceIfneededcircle();
+      console.log( getDistance(x, y, a, b));
     }
     
-}
+  }
   
 }
 
@@ -191,12 +191,12 @@ function mousePressed() {
   if (state === "end" && mouseInsideRect(830, 1130, 545, 695)) {
     state = "start"; 
   }
-  } 
+} 
 //Collision 
 function getDistance(x1, y1, x2, y2) {
-    xDistance = x2 - x1;
-    yDistance = y2 - y1; 
-    return sqrt(pow(xDistance, 2) + pow(yDistance, 2));
+  let xDistance = x2 - x1;
+  let yDistance = y2 - y1; 
+  return sqrt(pow(xDistance, 2) + pow(yDistance, 2));
 }
 
 //Game over message 
