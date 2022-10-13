@@ -12,9 +12,10 @@ let squareSize = 50;
 let squareColor;
 let ax = 3;
 let bx = 2;
-
+let gameEnd;
 function preload() {
   gameImg = loadImage("game-img.jpg");
+  gameEnd = loadImage("gameOverimg.jpg")
 }
 
 function setup() {
@@ -23,16 +24,18 @@ function setup() {
 }
 
 function draw() {
-  if (getDistance(x,y,a,b) < circleSize + squareSize) {
-    console.log("yay")
-  }
-  
+
   if (state === "start") {
     image(gameImg, 0, 0, width, height);
     startScreen();
   }
   if (state === "main") {
-    background(220);
+    if (getDistance(x,y,a,b) < circleSize + squareSize) {
+      image(gameEnd, 0, 0, width, height);
+      endGame();
+    }
+    else{
+      background(220);
     handleKeys();
     drawCircle();
     drawSquare();
@@ -40,6 +43,8 @@ function draw() {
     bounceIfNeeded();
     bounceIfneededcircle();
     console.log(getDistance(x,y,a,b))
+    }
+    
 }
   
 }
@@ -187,6 +192,20 @@ function getDistance(x1, y1, x2, y2) {
     return sqrt(pow(xDistance, 2) + pow(yDistance, 2));
 }
 
+//Game over message 
+function endGame(){
+  if (mouseInsideRect(830, 1130, 545, 695)) {
+    fill("yellow");
+  }
+  else {
+    fill("blue");
+  }
+  rect(  830, 545, 300, 150);
+  fill("white");
+  textSize(50);
+  text("Again?", 830 + 80, 545 + 90);
+}
+  
   
   
   
