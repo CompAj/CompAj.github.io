@@ -153,16 +153,16 @@ function bounceIfneededcircle() {
 }
   
 function startScreen() {
-  if (mouseInsideRect(400, 700, 400, 550)) {
-    fill("gray");
+  if (mouseInsideRect(830, 1130, 545, 695)) {
+    fill("yellow");
   }
   else {
-    fill("black");
+    fill("blue");
   }
-  rect(400, 400, 300, 150);
+  rect(  830, 545, 300, 150);
   fill("white");
   textSize(50);
-  text("Start", 480, 490);
+  text("Start", 830 + 80, 545 + 90);
 }
   
 function mouseInsideRect(left, right, top, bottom) {
@@ -171,11 +171,12 @@ function mouseInsideRect(left, right, top, bottom) {
 }
 
 function mousePressed() {
-  if (state === "start" && mouseInsideRect(400, 700, 400, 550)) {
+  if (state === "start" && mouseInsideRect(830, 1130, 545, 695)) {
     state = "main";
   } 
 }
-  
+
+
   
   
   
