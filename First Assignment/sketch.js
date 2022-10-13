@@ -13,9 +13,11 @@ let squareColor;
 let ax = 3;
 let bx = 2;
 let gameEnd;
+let startButton; 
 function preload() {
   gameImg = loadImage("game-img.jpg");
   gameEnd = loadImage("gameOverimg.jpg");
+  startButton = loadImage("start-button");
 }
 
 function setup() {
