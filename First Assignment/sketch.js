@@ -35,6 +35,7 @@ function draw() {
     moveSquare();
     bounceIfNeeded();
     bounceIfneededcircle();
+    console.log(getDistance(x,y,a,b))
 }
   
 }
@@ -175,7 +176,12 @@ function mousePressed() {
     state = "main";
   } 
 }
-
+//Collision 
+function getDistance(x1, y1, x2, y2) {
+    xDistance = x2 - x1;
+    yDistance = y2 - y1; 
+    return sqrt(pow(xDistance, 2) + pow(yDistance, 2));
+}
 
   
   
