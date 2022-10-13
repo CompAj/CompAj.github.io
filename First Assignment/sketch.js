@@ -26,6 +26,10 @@ function setup() {
 function draw() {
 
   if (state === "start") {
+    x = 0;
+    y = 0;
+    a = 100;
+    b = 100;
     image(gameImg, 0, 0, width, height);
     startScreen();
   }
@@ -184,7 +188,7 @@ function mousePressed() {
   if (state === "start" && mouseInsideRect(830, 1130, 545, 695)) {
     state = "main";
   }
-  if (state === "end") {
+  if (state === "end" && mouseInsideRect(830, 1130, 545, 695)) {
     state = "start"; 
   }
   } 
@@ -197,7 +201,6 @@ function getDistance(x1, y1, x2, y2) {
 
 //Game over message 
 function endGame(){
-  state = "end";
   if (mouseInsideRect(830, 1130, 545, 695)) {
     fill("white");
   }
@@ -208,7 +211,7 @@ function endGame(){
   fill("black");
   textSize(50);
   text("Again?", 830 + 80, 545 + 90);
-
+  state = "end";
 }
   
   
