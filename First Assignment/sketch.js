@@ -23,6 +23,10 @@ function setup() {
 }
 
 function draw() {
+  if (getDistance(x,y,a,b) < circleSize + squareSize) {
+    console.log("yay")
+  }
+  
   if (state === "start") {
     image(gameImg, 0, 0, width, height);
     startScreen();
