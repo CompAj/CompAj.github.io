@@ -1,5 +1,5 @@
 let state = "start";
-let treesImg;
+let gameImg;
 let x = 0;
 let y = 0;
 let a = 100;
@@ -13,6 +13,9 @@ let squareColor;
 let ax = 3;
 let bx = 2;
 
+function preload() {
+  gameImg = loadImage("game-img.jpg");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -21,6 +24,7 @@ function setup() {
 
 function draw() {
   if (state === "start") {
+    image(gameImg, 0, 0, width, height);
     startScreen();
   }
   if (state === "main") {
