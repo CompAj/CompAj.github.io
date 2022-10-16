@@ -24,7 +24,9 @@ function setup() {
 }
 
 function draw() {
-
+  if (state === "end") {
+    endGame(); 
+  }
   if (state === "start") {
     x = windowWidth / 2;
     y = windowHeight / 2;
@@ -34,9 +36,9 @@ function draw() {
     startScreen();
   }
   if (state === "main") {
-    if (getDistance(x,y,a,b) < circleSize + squareSize) {
+    if (getDistance(x,y,a,b) < squareSize) {
       image(gameEnd, 0, 0, width, height);
-      endGame();
+      state = "end"; 
     }
     else{
       background(220);
@@ -213,8 +215,8 @@ function endGame(){
   text("Again?", windowWidth / 2 - 150 + 80, windowHeight / 2 + 150 + 90);
   state = "end";
 }
-  
-  
+
+
   
   
   
