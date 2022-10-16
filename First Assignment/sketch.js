@@ -167,16 +167,16 @@ function bounceIfneededcircle() {
 }
   
 function startScreen() {
-  if (mouseInsideRect(830, 1130, 545, 695)) {
+  if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
     fill("yellow");
   }
   else {
     fill("blue");
   }
-  rect(  830, 545, 300, 150);
+  rect(windowWidth / 2 - 150 , windowHeight / 2, 300, 150);
   fill("white");
   textSize(50);
-  text("Start", 830 + 80, 545 + 90);
+  text("Start", windowWidth / 2 - 150 + 80, windowHeight / 2 + 90);
 }
   
 function mouseInsideRect(left, right, top, bottom) {
@@ -185,10 +185,10 @@ function mouseInsideRect(left, right, top, bottom) {
 }
 
 function mousePressed() {
-  if (state === "start" && mouseInsideRect(830, 1130, 545, 695)) {
+  if (state === "start" && mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
     state = "main";
   }
-  if (state === "end" && mouseInsideRect(830, 1130, 545, 695)) {
+  if (state === "end" && mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2 + 150, windowHeight / 2 + 300)) {
     state = "start"; 
   }
 } 
@@ -201,16 +201,16 @@ function getDistance(x1, y1, x2, y2) {
 
 //Game over message 
 function endGame(){
-  if (mouseInsideRect(830, 1130, 545, 695)) {
+  if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2 + 150, windowHeight / 2 + 300)) {
     fill("white");
   }
   else {
     fill("blue");
   }
-  rect(  830, 545, 300, 150);
+  rect(windowWidth / 2 - 150 , windowHeight / 2 + 150, 300, 150);
   fill("black");
   textSize(50);
-  text("Again?", 830 + 80, 545 + 90);
+  text("Again?", windowWidth / 2 - 150 + 80, windowHeight / 2 + 150 + 90);
   state = "end";
 }
   
