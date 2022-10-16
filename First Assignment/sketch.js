@@ -2,8 +2,8 @@ let state = "start";
 let gameImg;
 let x = 0;
 let y = 0;
-let a = 100;
-let b = 100;
+let a = 400;
+let b = 400;
 let circleSize = 10;
 let circleSpeed = 5;
 let dx = 3;
@@ -13,11 +13,9 @@ let squareColor;
 let ax = 3;
 let bx = 2;
 let gameEnd;
-let startButton; 
 function preload() {
   gameImg = loadImage("game-img.jpg");
   gameEnd = loadImage("gameOverimg.jpg");
-  startButton = loadImage("start-button");
 }
 
 function setup() {
@@ -28,8 +26,8 @@ function setup() {
 function draw() {
 
   if (state === "start") {
-    x = 0;
-    y = 0;
+    x = windowWidth / 2;
+    y = windowHeight / 2;
     a = 100;
     b = 100;
     image(gameImg, 0, 0, width, height);
