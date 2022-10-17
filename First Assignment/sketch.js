@@ -14,6 +14,8 @@ let ax = 3;
 let bx = 2;
 let gameEnd;
 let score = 0; 
+
+
 function preload() {
   gameImg = loadImage("game-img.jpg");
   gameEnd = loadImage("gameOverimg.jpg");
@@ -40,7 +42,7 @@ function draw() {
     startScreen();
   }
   if (state === "main") {
-    if (getDistance(x,y,a,b) < squareSize  + circleSize) {
+    if (getDistance(x,y,a,b) < squareSize + circleSize / 2 ) {
       image(gameEnd, 0, 0, width, height);
       state = "end"; 
     }
@@ -55,7 +57,7 @@ function draw() {
       bounceIfneededcircle();
       scoreBoard();
       speedUp()
-      console.log(dx); 
+      console.log(getDistance(x,y,a,b));
     }
     
   }
@@ -82,23 +84,6 @@ function handleKeys() {
     a -= circleSpeed;
   }
 }
-function mouseWheel(event) {
-  // console.log(event.delta);
-  if (event.delta < 0) {
-    //sanity check for max size
-    if (squareSize < height * 0.75 &&
-        squareSize < width * 0.75) {
-      squareSize += 5;
-    }
-  }
-  else {
-    //sanity check for min size
-    if (squareSize > 10) {
-      squareSize -= 5;
-    }
-  }
-}
-
 
 function drawSquare() {
   fill(squareColor);
@@ -205,7 +190,7 @@ function mousePressed() {
 function getDistance(x1, y1, x2, y2) {
   let xDistance = x2 - x1;
   let yDistance = y2 - y1; 
-  return sqrt(pow(xDistance, 2) + pow(yDistance, 2));
+  return sqrt(abs(pow(xDistance, 2) + pow(yDistance, 2)));
 }
 
 //Game over message 
