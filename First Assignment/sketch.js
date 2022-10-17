@@ -13,6 +13,7 @@ let squareColor;
 let ax = 3;
 let bx = 2;
 let gameEnd;
+let score = 0; 
 function preload() {
   gameImg = loadImage("game-img.jpg");
   gameEnd = loadImage("gameOverimg.jpg");
@@ -32,23 +33,26 @@ function draw() {
     y = windowHeight / 2;
     a = 100;
     b = 100;
+    score = 0; 
     image(gameImg, 0, 0, width, height);
     startScreen();
   }
   if (state === "main") {
-    if (getDistance(x,y,a,b) < squareSize) {
+    if (getDistance(x,y,a,b) < squareSize  + circleSize) {
       image(gameEnd, 0, 0, width, height);
       state = "end"; 
     }
     else{
       background(220);
+      socrePlace()
       handleKeys();
       drawCircle();
       drawSquare();
       moveSquare();
       bounceIfNeeded();
       bounceIfneededcircle();
-      console.log( getDistance(x, y, a, b));
+      scoreBoard();
+      console.log(score); 
     }
     
   }
@@ -213,10 +217,23 @@ function endGame(){
   fill("black");
   textSize(50);
   text("Again?", windowWidth / 2 - 150 + 80, windowHeight / 2 + 150 + 90);
+  fill("red"); 
+  textSize(20);
+  text("Score:" + " " + score, 10, 30);
   state = "end";
 }
 
+function scoreBoard() {
+  while (state === "main") {
+    score += 1; 
+    return score; 
+  }
+}
 
+function socrePlace() {
+  textSize(15);
+  text("Score:" + " "+ score, windowWidth / 2, 15);
+}
   
   
   
