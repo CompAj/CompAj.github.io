@@ -77,11 +77,11 @@ function draw() {
     a = 100;
     b = 100;
     
-  //Sets New Speed on Square abd Score
+    //Sets New Speed on Square abd Score
     dx = 3;
     dy = 2; 
     score = 0; 
-  //Loads Beggining Image
+    //Loads Beggining Image
     image(gameImg, 0, 0, width, height);
     startScreen();
   }
@@ -94,7 +94,7 @@ function draw() {
     //Runs the Main Functins (Functions Will Be Descirbed Futher Down)
     else{
       background(220);
-      socrePlace()
+      socrePlace();
       handleKeys();
       drawCircle();
       drawSquare();
@@ -102,7 +102,7 @@ function draw() {
       bounceIfNeeded();
       bounceIfneededcircle();
       scoreBoard();
-      speedUp()
+      speedUp(); 
     }
   } 
 }
@@ -277,23 +277,23 @@ function socrePlace() {
 
 //Speeds Up the Sqaure Everytime the Score is Divisable By Three Hundred
 function speedUp() {
-   if(score / 300 === int(score / 300)){
+  if(score / 300 === int(score / 300)){
     if (dx > 30 || dx < -30) {
       if (dx === abs(dx)) {
         dx = speedLimit;
       }
       if (dx === -33){
-        dx = -(speedLimit); 
+        dx = - speedLimit; 
       }
     }
     else {
-    if (dx === abs(dx)) {
-      dx = dx + 5;
+      if (dx === abs(dx)) {
+        dx = dx + 5;
+      }
+      else {
+        dx = dx -5; 
+      }
     }
-    else {
-      dx = dx -5; 
-    }
-}
   }
 }
 //End of Code
