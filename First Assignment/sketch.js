@@ -33,6 +33,8 @@ function draw() {
     y = windowHeight / 2;
     a = 100;
     b = 100;
+    dx = 3;
+    dy = 2; 
     score = 0; 
     image(gameImg, 0, 0, width, height);
     startScreen();
@@ -52,7 +54,8 @@ function draw() {
       bounceIfNeeded();
       bounceIfneededcircle();
       scoreBoard();
-      console.log(score); 
+      speedUp()
+      console.log(dx); 
     }
     
   }
@@ -234,9 +237,39 @@ function socrePlace() {
   textSize(15);
   text("Score:" + " "+ score, windowWidth / 2, 15);
 }
-  
-  
-  
+
+function speedUpsquare() {
+if (score === 300) {
+  dx = dx + 10;
+  dy = dy + 9;
+}
+else if (score === 1000) {
+  dx = dx + 11;
+  dy = dy + 10;
+  squareSize = squareSize + 20;
+}
+}
+
+function speedUp() {
+   if(score / 300 === int(score / 300)){
+    if (dx > 30 || dx < -30) {
+      if (dx === abs(dx)) {
+        dx = 33
+      }
+      if (dx === -33){
+        dx = -33; 
+      }
+    }
+    else {
+    if (dx === abs(dx)) {
+      dx = dx + 5;
+    }
+    else {
+      dx = dx -5; 
+    }
+}
+  }
+}
   
   
   
