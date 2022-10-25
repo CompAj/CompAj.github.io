@@ -33,3 +33,4 @@ function displayRectangle (x, rectHeight, rectWidth) {
   let y = height - rectHeight; 
   rect(x, y, rectWidth, rectHeight); 
 }
+
