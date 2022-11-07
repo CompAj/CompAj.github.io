@@ -54,9 +54,17 @@ function displayGrid(grid) {
 function create2dArray(colms, rows) {
   let emptyArray = [];
   for (let y=0; y<rows; y++) {
-    emptyArray.push([1]);
+    emptyArray.push([]);
     for (let x=0; x<colms; x++) {
-      emptyArray[y].push(0);
+      if (x % 2 === 0 && y % 2 === 0) {
+        emptyArray[y].push(1);
+      }
+      if (){
+        
+      }
+      else {
+        emptyArray[y].push(0);
+      }
     }
   }
   return emptyArray;
