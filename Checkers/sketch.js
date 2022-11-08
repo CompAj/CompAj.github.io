@@ -43,6 +43,9 @@ function displayGrid(grid) {
       if (grid[y][x] === 0) {
         fill("white");
       }
+      if (grid[y][x] === 3) {
+        fill("red"); 
+      }
       else if (grid[y][x] === 1) {
         fill("black");
       }
@@ -59,9 +62,11 @@ function create2dArray(colms, rows) {
       if (x % 2 === 0 && y % 2 === 0) {
         emptyArray[y].push(1);
       }
-      if (){
+      if (y % 0.50 === 0) {
+        emptyArray[y].push(1);
         
       }
+    
       else {
         emptyArray[y].push(0);
       }
