@@ -41,11 +41,11 @@ function displayGrid(grid) {
   for (let y=0; y<rows; y++) {
     for (let x=0; x<colms; x++) {
       if (grid[y][x] === 0) {
-        fill("white");
+        fill("red");
       }
-      if (grid[y][x] === 3) {
-        fill("red"); 
-      }
+      // if (grid[y][x] === 3) {
+      //   fill("red"); 
+      // }
       else if (grid[y][x] === 1) {
         fill("black");
       }
@@ -62,10 +62,10 @@ function create2dArray(colms, rows) {
       if (x % 2 === 0 && y % 2 === 0) {
         emptyArray[y].push(1);
       }
-      if (y % 0.50 === 0) {
-        emptyArray[y].push(1);
-        
-      }
+     
+      // if (y % 2 !== 0 && x % 2 !== 0) {
+      //   emptyArray[y].push(1);
+      // }
     
       else {
         emptyArray[y].push(0);
