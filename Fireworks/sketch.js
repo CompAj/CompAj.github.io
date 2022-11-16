@@ -26,6 +26,10 @@ class Partical {
     stroke(this.color);
     circle(this.x, this.y, this.diameter);
   }
+
+  isDead () {
+    return this.alpha <= 0; 
+  }
 }
 
 let fireWorks = []; 
@@ -37,11 +41,16 @@ function setup() {
 function draw() {
   background(220);
   for (let i = 0; i < fireWorks.length; i++) {
-    fireWorks[i].update(); 
-    fireWorks[i].display(); 
+    fireWorks[i].update();
+    if (fireWorks[i].isDead()) {
+      fireWorks.splice(i, 1); 
+    } 
+
+    else {
+      fireWorks[i].display(); 
+    }
   }
 }
-
 
 function mousePressed () {
   for (let i = 0; i < 100; i++) {
