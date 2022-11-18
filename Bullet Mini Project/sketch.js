@@ -1,8 +1,8 @@
 // Bullet
 class Bullet {
   constructor(x , y){
-    this.x = x; 
-    this.y = y; 
+    this.x = 200; 
+    this.y = 500; 
     this.radius = 3;  
     this.dx = 5;
     this.theColor = color(255, 0 ,0); 
@@ -15,28 +15,33 @@ class Bullet {
   display() {
     fill("red"); 
     noStroke(); 
-    circle(this.x, this.y, this.radius); 
+    circle(this.x, this.y, this.radius*2); 
+  }
+  isDead() {
+    return this.x >= width; 
   }
 }
 
 
-let theCircle = []; 
+let someBullet = new Bullet;
+let bullets = [];  
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let newBullet = new Bullet(300, 300);
-  theCircle.push(newBullet); 
 }
 
 function draw() {
   background(220);
-  for (let i = 0; i < theCircle.length; i++) {
-    theCircle[i].move();
-    theCircle[i].display();  
+  for (let someBullet of bullets) {
+    someBullet.move(); 
+    someBullet.display();
   }
 }
 
-function mousePressed() {
-  let newBullet  = new Bullet(300, 300); 
-  theCircle.push(newBullet); 
+
+
+
+function keyPressed() {
+  let someBullet = new Bullet();
+  bullets.push(someBullet); 
 }
