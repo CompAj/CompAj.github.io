@@ -59,16 +59,13 @@ function create2dArray(colms, rows) {
   for (let y=0; y<rows; y++) {
     emptyArray.push([]);
     for (let x=0; x<colms; x++) {
-      if (x % 2 === 0 && y % 2 ===0) {
+      if (y % 2 === 0) {
         emptyArray[y].push(1);
       }
-      // if (y % 2 === 0) {
-      //   emptyArray[y].push(1); 
-      // }
-    
       else {
         emptyArray[y].push(0);
       }
+      
     }
   }
   return emptyArray;
