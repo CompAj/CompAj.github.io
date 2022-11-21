@@ -1,11 +1,12 @@
 // Bullet
 class Bullet {
-  constructor(x , y){
+  constructor(theImage){
     this.x = 200; 
     this.y = 500; 
     this.radius = 3;  
     this.dx = 5;
     this.theColor = color(255, 0 ,0); 
+    this.image = theImage; 
   }
   move() { 
     this.x += this.dx; 
@@ -13,18 +14,22 @@ class Bullet {
   }
 
   display() {
-    fill("red"); 
-    noStroke(); 
-    circle(this.x, this.y, this.radius*2); 
+    image(this.image, this.x, this.y, this.image.width * 0.3, this.image.height * 0.3); 
   }
   isDead() {
     return this.x >= width; 
   }
 }
 
+let bullets = [];
+let bulletImg;   
 
 let someBullet = new Bullet;
-let bullets = [];  
+
+
+fucntion preload() {
+
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -36,6 +41,8 @@ function draw() {
     someBullet.move(); 
     someBullet.display();
   }
+
+  for ( i = bullets )
 }
 
 
