@@ -1,54 +1,54 @@
 // Bullet
-class Bullet {
-  constructor(theImage){
-    this.x = 200; 
-    this.y = 500; 
-    this.radius = 3;  
-    this.dx = 5;
-    this.theColor = color(255, 0 ,0); 
-    this.image = theImage; 
-  }
-  move() { 
-    this.x += this.dx; 
-    this.y += this.dy; 
+class Button {
+  constructor(x, y, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.color = "black";
+    this.hoverColor = "gray";
   }
 
   display() {
-    image(this.image, this.x, this.y, this.image.width * 0.3, this.image.height * 0.3); 
+    if (this.isInside(mouseX, mouseY)) {
+      fill(this.hoverColor);
+    }
+    else {
+      fill(this.color);
+    }
+    rect(this.x, this.y, this.width, this.height);
   }
-  isDead() {
-    return this.x >= width; 
+
+  isInside(x, y) {
+    let leftSide = this.x;
+    let rightSide = this.x + this.width;
+    let topSide = this.y;
+    let bottomSide = this.y + this.height;
+
+    return x > leftSide && x < rightSide &&
+           y > topSide && y < bottomSide;
   }
 }
 
-let bullets = [];
-let bulletImg;   
-
-let someBullet = new Bullet;
-
-
-fucntion preload() {
-
-}
+let buttonOne = new Button(200, 300, 150, 75);
+let buttonTwo = new Button(200, 600, 150, 75);
+let backgroundColor = "lightgrey";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(220);
-  for (let someBullet of bullets) {
-    someBullet.move(); 
-    someBullet.display();
-  }
-
-  for ( i = bullets )
+  background(backgroundColor);
+  buttonOne.display();
+  buttonTwo.display();
 }
 
-
-
-
-function keyPressed() {
-  let someBullet = new Bullet();
-  bullets.push(someBullet); 
+function mousePressed() {
+  if (buttonOne.isInside(mouseX, mouseY)) {
+    backgroundColor = "red";
+  }
+  if (buttonTwo.isInside(mouseX, mouseY)) {
+    backgroundColor = "blue";
+  }
 }
