@@ -2,12 +2,18 @@
 // Anjana Samarasighe
 // Oct 25, 2022
 
-let grid = [[1, 0, 1],
-            [1, 0, 1],
-            [0, 1, 0]];
+const  ROWS  = 10;
+const  COLS  = 1;
+
+let grid;
+let cellWidth;
+let cellHeight;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  cellWidth = width/COLS;
+  cellHeight = height/ROWS;
+  grid = createRandom2dArray(COLS, ROWS);
 }
 
 
