@@ -1,24 +1,33 @@
 // Tic Tac Toe
+// Is a 2 player game where each player gets to put down a letter (X or O) in a turn based system and if you either get a column, row or diagonal with your letters you win!
 // Anjana Samarasighe
 // December 2, 2022
 
 //Defintions
-let grid; 
-const rows = 3; 
-const colms = 3; 
+let grid;
+//These Never Change
+const ROWS = 3; 
+const COLMS = 3; 
+//Images and Backgrounds
 let oBg; 
-let xBg; 
-let state; 
+let xBg;
+//Whaat Point You Are In the Game
+let state;
+//Score
 let score1; 
 let score2;
+// turn
 let turn;
+//Begging Screen
 let starterScreen;
+//X and O Images
 let xImg;
 let oImg;
-let drawImg;  
+//Background
+let drawImg;
+//Adds Truns To keep Track of A Draw  
 let truns;
-let posX;
-let posY; 
+//Checks Who Wins
 let winner; 
 
 //Loads Images Before
@@ -37,7 +46,7 @@ function setup() {
   score1 = 0; 
   score2 = 0; 
   turn = "player1"; 
-  grid = create2dArray(rows, colms);
+  grid = create2dArray(ROWS, COLMS);
   state = "startScreen"
   turns = 0; 
 }
@@ -81,8 +90,8 @@ function draw() {
 function mousePressed() {
 
   console.log(mouseX, mouseY);
-  let cellWidth = width / rows
-  let cellHeight = height / colms; 
+  let cellWidth = width / ROWS
+  let cellHeight = height / COLMS; 
 
   let x = Math.floor(mouseX/cellWidth);
   let y = Math.floor(mouseY/cellHeight);
@@ -108,7 +117,7 @@ function mousePressed() {
   }
 }
 
-//Displays Grid and Checks Whats Being Pushed 
+//Displays Grid and Checks Whats Being Pushed and Applies the Images 
 function displayGrid(grid) {
 
   
@@ -124,7 +133,7 @@ function displayGrid(grid) {
       }
       else if (grid[y][x] === 1) {
         rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-        image()
+        image(oImg, x * cellWidth, y * cellHeight, cellWidth, cellHeight);
         
         
       }
@@ -139,12 +148,12 @@ function displayGrid(grid) {
   }
 }
 
-//Creates 2d Array 
-function create2dArray(colms, rows) {
+//Creates 2d Array By Pushing Zeros Into An Empty Array
+function create2dArray(COLMS, ROWS) {
   let emptyArray = [];
-  for (let y=0; y<rows; y++) {
+  for (let y=0; y<ROWS; y++) {
     emptyArray.push([]);
-    for (let x=0; x<colms; x++) {
+    for (let x=0; x<COLMS; x++) {
         emptyArray[y].push(0);
        }
   }
@@ -154,7 +163,7 @@ function create2dArray(colms, rows) {
 
 function winCondition() {
   
-//Rows
+//ROWS
   if (grid[0][0] === 1 && grid[0][1] === 1 && grid[0][2] === 1) { //Top Row 
     player1Win();
   }
@@ -240,7 +249,7 @@ player2Win();
 
 //Displays Start Screen and Resets Game
 function startScreen() {
-  grid = create2dArray(colms, rows);
+  grid = create2dArray(COLMS, ROWS);
   turns = 0;
 
   if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
