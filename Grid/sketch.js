@@ -1,66 +1,101 @@
-// Grid
+// Tic Tac Toe
 // Anjana Samarasighe
 // Oct 25, 2022
 
 let grid; 
 const rows = 3; 
 const colms = 3; 
+let oBg; 
+let xBg; 
 let state; 
 let score1; 
 let score2;
 let turn;
 let starterScreen;
+let xImg;
+let oImg; 
+let truns;
+let posX;
+let posY; 
+let winner; 
 
 function preload() {
-  starterScreen = loadImage("Tic-tac-toe.png"); 
+  starterScreen = loadImage("Tic-tac-toe.png");
+  xImg = loadImage("X.png");
+  oImg = loadImage("O.png");
+  oBg = loadImage("oBackground.png"); 
+  xBg = loadImage("xBackground.png"); 
+
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   score1 = 0; 
   score2 = 0; 
-  turn = random(1,2);
+  turn = "player1"; 
   grid = create2dArray(rows, colms);
   state = "startScreen"
+  turns = 0; 
 }
 
 
 function draw() {
-  if (state === "startScreen") {
+
+  if (state === "finish") {
+    if (winner === "p1") {
+      image(oBg, 0, 0, width, height); 
+    }
+    if (winner === "p2") {
+      image(xBg, 0, 0, width, height); 
+    }
+  }
+
+
+  else if (state === "startScreen") {
     image(starterScreen, 0, 0, width, height);
     startScreen();
   }
-  if (state === "playGame") {
+  else if (state === "playGame") {
   background(220);
   displayGrid(grid);
+  winCondition();
   }
 }
 
 function mousePressed() {
-  
+
   console.log(mouseX, mouseY);
   let cellWidth = width / grid[0].length;
   let cellHeight = height / grid.length;
 
   let x = Math.floor(mouseX/cellWidth);
   let y = Math.floor(mouseY/cellHeight);
+
+  if (grid[y][x] === 0) {
+    turnChange();
+  }
   
   if (state === "startScreen" && mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
     state = "playGame";
   }
 
-  else if (grid[y][x] === 0) {
+  else if (grid[y][x] === 0 && turn === "player1") {
     grid[y][x] = 1;
   }
-  else if (grid[y][x] === 1) {
-    grid[y][x] = 0;
+
+  else if (grid[y][x] === 0 && turn === "player2") {
+    grid[y][x] = 2;
   }
 }
 
 //Displays Grid and Checks Whats Being Pushed 
 function displayGrid(grid) {
+
+  
   let cellWidth = width / grid[0].length;
   let cellHeight = height / grid.length;
+  
+
   for (let y=0; y<grid.length; y++) {
     for (let x=0; x<grid[y].length; x++) {
       if (grid[y][x] === 0) {
@@ -68,6 +103,10 @@ function displayGrid(grid) {
       }
       else if (grid[y][x] === 1) {
         fill("black");
+      }
+
+      else if (grid[y][x] === 2) {
+        fill("red");
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
@@ -87,85 +126,89 @@ function create2dArray(colms, rows) {
 }
 
 
-function winConditionP1() {
+function winCondition() {
   
 //Rows
   if (grid[0][0] === 1 && grid[0][1] === 1 && grid[0][2] === 1) { //Top Row 
-      console.log("win");
+    player1Win();
   }
   
-  if (grid[1][0] === 1 && grid[1][1] === 1 && grid[1][2] === 1) { //Middle Row 
-    console.log("win");
+  else if (grid[1][0] === 1 && grid[1][1] === 1 && grid[1][2] === 1) { //Middle Row 
+    player1Win(); 
 }
 
-  if (grid[2][0] === 1 && grid[2][1] === 1  && grid[2][2] === 1) { //Bottom Row 
-  console.log("win");
+  else if (grid[2][0] === 1 && grid[2][1] === 1  && grid[2][2] === 1) { //Bottom Row 
+  player1Win(); 
 }
 
 
 //Colmbs
-  if (grid[0][0] === 1 && grid[1][0] === 1  && grid[2][0] === 1) { //First Columb  
-    console.log("win"); 
+  else if (grid[0][0] === 1 && grid[1][0] === 1  && grid[2][0] === 1) { //First Columb  
+    player1Win();  
 }
 
-  if (grid[0][1] === 1 && grid[1][1] === 1 && grid[2][1] === 1) { //Second Columb  
-    console.log("win");
+  else if (grid[0][1] === 1 && grid[1][1] === 1 && grid[2][1] === 1) { //Second Columb  
+    player1Win(); 
 }
 
-if (grid[0][2] === 1 && grid[1][2] === 1 && grid[2][2] === 1) { //Third Columb  
-  console.log("win");
+else if (grid[0][2] === 1 && grid[1][2] === 1 && grid[2][2] === 1) { //Third Columb  
+  player1Win(); 
 }
 
 //Diagonals 
 
-if (grid[0][0] === 1 && grid[1][1] === 1 && grid[2][2] === 1) { //Left-Right Diagonal   
-  console.log("win");
+else if (grid[0][0] === 1 && grid[1][1] === 1 && grid[2][2] === 1) { //Left-Right Diagonal   
+  player1Win(); 
 }
 
-if (grid[0][2] === 1 && grid[1][1] === 1 && grid[2][0] === 1) { //Left-Right Diagonal   
-  console.log("win");
+else if (grid[0][2] === 1 && grid[1][1] === 1 && grid[2][0] === 1) { //Left-Right Diagonal   
+  player1Win();
 }
 
+//Player 2 win Condition
+else if (grid[0][0] === 2 && grid[0][1] === 2 && grid[0][2] === 2) { //Top Row 
+  player2Win(); 
 }
 
-function winConditionP2() {
-  if (grid[0][0] === 2 && grid[0][1] === 2 && grid[0][2] === 2) { //Top Row 
-    console.log("win");
-  }
-
-  if (grid[1][0] === 2 && grid[1][1] === 2 && grid[1][2] === 2) { //Middle Row 
-    console.log("win");
-  }
-
-  if (grid[2][0] === 2 && grid[2][1] === 2 && grid[2][2] === 2) { //Bottom Row 
-  console.log("win");
-  }
-  
-
-  //Colmbs
-  if (grid[0][0] === 2 && grid[1][0] === 2 && grid[2][0] === 2) { //First Columb  
-    console.log("win");
-  }
-
-  if (grid[0][1] === 2 && grid[1][1] === 2 && grid[2][1] === 2) { //Second Columb  
-    console.log("win");
-  }
-
-  if (grid[0][2] === 2 && grid[1][2] === 2 && grid[2][2] === 2) { //Third Columb  
-  console.log("win");
-  }
-
-  //Diagonals 
-
-  if (grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 2) { //Left-Right Diagonal   
-  console.log("win");
-  }
-
-  if (grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 2) { //Left-Right Diagonal   
-  console.log("win");
-  }
-
+else if (grid[1][0] === 2 && grid[1][1] === 2 && grid[1][2] === 2) { //Middle Row 
+  player2Win();
 }
+
+else if (grid[2][0] === 2 && grid[2][1] === 2 && grid[2][2] === 2) { //Bottom Row 
+player2Win();
+}
+
+
+//Colmbs
+else if (grid[0][0] === 2 && grid[1][0] === 2 && grid[2][0] === 2) { //First Columb  
+  player2Win();
+}
+
+else if (grid[0][1] === 2 && grid[1][1] === 2 && grid[2][1] === 2) { //Second Columb  
+  player2Win();
+}
+
+else if (grid[0][2] === 2 && grid[1][2] === 2 && grid[2][2] === 2) { //Third Columb  
+player2Win();
+}
+
+//Diagonals 
+
+else if (grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 2) { //Left-Right Diagonal   
+player2Win();
+}
+
+else if (grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 2) { //Left-Right Diagonal   
+player2Win();
+}
+
+//Check for a draw
+  else if (turns === 9) {
+    endGame(); 
+  }
+}
+
+
 
 function startScreen() {
   if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
@@ -184,4 +227,34 @@ function startScreen() {
 function mouseInsideRect(left, right, top, bottom) {
   return mouseX >= left && mouseX <= right &&
          mouseY >= top && mouseY <= bottom;
+}
+
+
+function turnChange() {
+  if (state === "playGame"){
+    if (turn === "player1") {
+      turn = "player2";
+      turns =  turns + 1; 
+    }
+    else if (turn === "player2") {
+      turn = "player1";
+      turns =  turns + 1; 
+    }
+  }
+}
+
+function player1Win() {
+  winner = "p1";
+  score1 = score1 + 1;
+  endGame(); 
+}
+
+function player2Win() {
+  winner = "p2"; 
+  score2 = score2 + 1;
+  endGame();
+}
+
+function endGame(){ 
+  state = "finish"; 
 }
