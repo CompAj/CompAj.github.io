@@ -13,7 +13,8 @@ let score2;
 let turn;
 let starterScreen;
 let xImg;
-let oImg; 
+let oImg;
+let drawImg;  
 let truns;
 let posX;
 let posY; 
@@ -25,7 +26,7 @@ function preload() {
   oImg = loadImage("O.png");
   oBg = loadImage("oBackground.png"); 
   xBg = loadImage("xBackground.png"); 
-
+  drawImg = loadImage("drawBackground.png");
 }
 
 function setup() {
@@ -43,12 +44,19 @@ function draw() {
 
   if (state === "finish") {
     if (winner === "p1") {
-      image(oBg, 0, 0, width, height); 
+      image(oBg, 0, 0, width, height);
+      socrePlace();  
     }
     if (winner === "p2") {
-      image(xBg, 0, 0, width, height); 
+      image(xBg, 0, 0, width, height);
+      socrePlace(); 
+    }
+    if (winner === "nobody") {
+      image(drawImg, 0,0,width, height)
+      socrePlace();
     }
   }
+  
 
 
   else if (state === "startScreen") {
@@ -204,6 +212,7 @@ player2Win();
 
 //Check for a draw
   else if (turns === 9) {
+    winner = "nobody"; 
     endGame(); 
   }
 }
@@ -257,4 +266,10 @@ function player2Win() {
 
 function endGame(){ 
   state = "finish"; 
+}
+
+function socrePlace() {
+  textSize(15);
+  text("X's Score:" + " "+ score1, windowWidth / 2, 30);
+  text("O's Score:" + " "+ score2, windowWidth / 2, 60);
 }
