@@ -81,8 +81,8 @@ function draw() {
 function mousePressed() {
 
   console.log(mouseX, mouseY);
-  let cellWidth = width / grid[0].length;
-  let cellHeight = height / grid.length;
+  let cellWidth = width / rows
+  let cellHeight = height / colms; 
 
   let x = Math.floor(mouseX/cellWidth);
   let y = Math.floor(mouseY/cellHeight);
@@ -119,18 +119,22 @@ function displayGrid(grid) {
   for (let y=0; y<grid.length; y++) {
     for (let x=0; x<grid[y].length; x++) {
       if (grid[y][x] === 0) {
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
         fill("white");
       }
       else if (grid[y][x] === 1) {
-        fill("black");
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image()
         
         
       }
 
       else if (grid[y][x] === 2) {
-        fill("red");
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        
+        image(xImg, x * cellWidth, y * cellHeight, cellWidth, cellHeight);
       }
-      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+      
     }
   }
 }
