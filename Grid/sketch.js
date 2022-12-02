@@ -2,18 +2,26 @@
 // Anjana Samarasighe
 // Oct 25, 2022
 
-let grid = [[1, 0, 1],
-            [1, 0, 1],
-            [0, 1, 0]];
-
+let grid; 
+const rows = 3; 
+const colms = 3; 
+let state; 
+let score1; 
+let score2;
+let turn;  
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  score1 = 0; 
+  score2 = 0; 
+  turn = random(0, 2);
+  console.log(turn);
+  grid = create2dArray(rows, colms);
 }
 
 
 function draw() {
   background(220);
-  displayGrid(grid);
+  displayGrid(grid); 
 }
 
 function mousePressed() {
@@ -32,6 +40,7 @@ function mousePressed() {
   }
 }
 
+//Displays Grid and Checks Whats Being Pushed 
 function displayGrid(grid) {
   let cellWidth = width / grid[0].length;
   let cellHeight = height / grid.length;
@@ -46,4 +55,16 @@ function displayGrid(grid) {
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
   }
+}
+
+//Creates 2d Array 
+function create2dArray(colms, rows) {
+  let emptyArray = [];
+  for (let y=0; y<rows; y++) {
+    emptyArray.push([]);
+    for (let x=0; x<colms; x++) {
+        emptyArray[y].push(0);
+       }
+  }
+  return emptyArray;
 }
