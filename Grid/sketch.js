@@ -2,6 +2,7 @@
 // Anjana Samarasighe
 // December 2, 2022
 
+//Defintions
 let grid; 
 const rows = 3; 
 const colms = 3; 
@@ -76,6 +77,7 @@ function draw() {
   }
 }
 
+//Checks When the Mouse Is Being Pressed and Also Checks the States
 function mousePressed() {
 
   console.log(mouseX, mouseY);
@@ -88,6 +90,7 @@ function mousePressed() {
   if (grid[y][x] === 0) {
     turnChange();
   }
+
   if (state === "finish" && mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2 + 150, windowHeight / 2 + 300)) {
     state = "startScreen";
   }
@@ -120,6 +123,8 @@ function displayGrid(grid) {
       }
       else if (grid[y][x] === 1) {
         fill("black");
+        
+        
       }
 
       else if (grid[y][x] === 2) {
@@ -229,9 +234,11 @@ player2Win();
 
 
 
+//Displays Start Screen and Resets Game
 function startScreen() {
   grid = create2dArray(colms, rows);
-  turns = 0; 
+  turns = 0;
+
   if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
     fill("yellow");
   }
@@ -244,13 +251,13 @@ function startScreen() {
   text("Start", windowWidth / 2 - 150 + 80, windowHeight / 2 + 90);
 }
 
-
+//Checks If the Mouse Is In A Specific Area
 function mouseInsideRect(left, right, top, bottom) {
   return mouseX >= left && mouseX <= right &&
          mouseY >= top && mouseY <= bottom;
 }
 
-
+//Changes the Turns For Each Player
 function turnChange() {
   if (state === "playGame"){
     if (turn === "player1") {
@@ -264,28 +271,33 @@ function turnChange() {
   }
 }
 
+//X wins
 function player1Win() {
   winner = "p1";
   score1 = score1 + 1;
   endGame(); 
 }
 
+//O wins
 function player2Win() {
   winner = "p2"; 
   score2 = score2 + 1;
   endGame();
 }
 
+//Ends the Game
 function endGame(){ 
   state = "finish"; 
 }
 
+//Displays Score Board
 function socrePlace() {
   textSize(15);
   text("X's Score:" + " "+ score1, windowWidth / 2, 30);
   text("O's Score:" + " "+ score2, windowWidth / 2, 60);
 }
 
+//Returns To the Start Screen
 function playAgain () {
   if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2 + 150, windowHeight / 2 + 300)) {
     fill("white");
@@ -300,3 +312,4 @@ function playAgain () {
   fill("red"); 
   state = "finish";
 }
+//End Code
