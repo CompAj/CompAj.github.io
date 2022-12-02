@@ -2,8 +2,8 @@
 //Anjana Samarasinghe 
 //oct 26, 2022
 
-const  ROWS  = 10;
-const  COLS  = 10;
+const ROWS = 40;
+const COLS = 40;
 let grid;
 let cellWidth;
 let cellHeight;
@@ -18,6 +18,18 @@ function setup() {
 function draw() {
   background(220);
   displayGrid(grid);
+}
+
+function mousePressed() {
+  let xPos = Math.floor(mouseX/cellWidth);
+  let yPos = Math.floor(mouseY/cellHeight);
+
+  if (grid[yPos][xPos] === 0) {
+    grid[yPos][xPos] = 1;
+  }
+  else if (grid[yPos][xPos] === 1) {
+    grid[yPos][xPos] = 0;
+  }
 }
 
 function displayGrid(grid) {
@@ -59,15 +71,4 @@ function createRandom2dArray(COLS, ROWS) {
     }
   }
   return emptyArray;
-}
-
-function mousePressed() {
-  let xPos = Math.floor(mouseX / cellWidth);
-  let yPos = Math.floor(mouseY / cellHeight); 
-  if (grid[yPos][xPos]) {
-    grid[yPos][xPos] = 0; 
-  }
-  else if (grid[yPos][xPos]) {
-    grid[yPos][xPos] = 1;
-  }
 }

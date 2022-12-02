@@ -1,6 +1,6 @@
 // Tic Tac Toe
 // Anjana Samarasighe
-// Oct 25, 2022
+// December 2, 2022
 
 let grid; 
 const rows = 3; 
@@ -20,6 +20,7 @@ let posX;
 let posY; 
 let winner; 
 
+//Loads Images Before
 function preload() {
   starterScreen = loadImage("Tic-tac-toe.png");
   xImg = loadImage("X.png");
@@ -29,6 +30,7 @@ function preload() {
   drawImg = loadImage("drawBackground.png");
 }
 
+// Where most Of the Let Statments Are Defined
 function setup() {
   createCanvas(windowWidth, windowHeight);
   score1 = 0; 
@@ -39,21 +41,24 @@ function setup() {
   turns = 0; 
 }
 
-
+// A Draw That Is Used To Display the Code
 function draw() {
 
   if (state === "finish") {
     if (winner === "p1") {
       image(oBg, 0, 0, width, height);
-      socrePlace();  
+      socrePlace();
+      playAgain(); 
     }
     if (winner === "p2") {
       image(xBg, 0, 0, width, height);
-      socrePlace(); 
+      socrePlace();
+      playAgain(); 
     }
     if (winner === "nobody") {
       image(drawImg, 0,0,width, height)
       socrePlace();
+      playAgain(); 
     }
   }
   
@@ -61,7 +66,8 @@ function draw() {
 
   else if (state === "startScreen") {
     image(starterScreen, 0, 0, width, height);
-    startScreen();
+    startScreen(); 
+    
   }
   else if (state === "playGame") {
   background(220);
@@ -81,6 +87,9 @@ function mousePressed() {
 
   if (grid[y][x] === 0) {
     turnChange();
+  }
+  if (state === "finish" && mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2 + 150, windowHeight / 2 + 300)) {
+    state = "startScreen";
   }
   
   if (state === "startScreen" && mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
@@ -211,7 +220,8 @@ player2Win();
 }
 
 //Check for a draw
-  else if (turns === 9) {
+  else if (turns / 9 === 1) {
+    turns = turns + 1;
     winner = "nobody"; 
     endGame(); 
   }
@@ -220,6 +230,8 @@ player2Win();
 
 
 function startScreen() {
+  grid = create2dArray(colms, rows);
+  turns = 0; 
   if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2, windowHeight / 2 + 150)) {
     fill("yellow");
   }
@@ -272,4 +284,19 @@ function socrePlace() {
   textSize(15);
   text("X's Score:" + " "+ score1, windowWidth / 2, 30);
   text("O's Score:" + " "+ score2, windowWidth / 2, 60);
+}
+
+function playAgain () {
+  if (mouseInsideRect(windowWidth / 2 - 150, windowWidth / 2 - 150 + 300, windowHeight / 2 + 150, windowHeight / 2 + 300)) {
+    fill("white");
+  }
+  else {
+    fill("blue");
+  }
+  rect(windowWidth / 2 - 150 , windowHeight / 2 + 150, 300, 150);
+  fill("black");
+  textSize(50);
+  text("Again?", windowWidth / 2 - 150 + 80, windowHeight / 2 + 150 + 90);
+  fill("red"); 
+  state = "finish";
 }
